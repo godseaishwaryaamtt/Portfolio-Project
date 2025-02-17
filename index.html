@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Aishwarya Godse</title>
+  <style>
+    :root {
+      /* Dark Theme Variables */
+      --bg-color: #1e1e2f;
+      --text-color: #dcdcdc;
+      --nav-bg: #2c2c3c;
+      --nav-hover: #3a3a4a;
+      --accent: #00d1b2;
+      --hover: #ff4081;
+      --marquee-bg: #35354a;
+      --project-card-bg: #2c2c3c;
+      --github-card-bg: #2c2c3c;
+      --skill-bg: #2c2c3c; /* Updated to match project cards */
+      --form-bg: #2c2c3c;
+      --footer-bg: #2c2c3c;
+      --heading-shadow: 2px 2px 5px rgba(0, 209, 178, 0.5);
+    }
+    .light-theme {
+      --bg-color: #f4f4f4;
+      --text-color: #333333;
+      --nav-bg: #ffffff;
+      --nav-hover: #dddddd;
+      --accent: #007bff;
+      --hover: #ff4081;
+      --marquee-bg: #e0e0e0;
+      --project-card-bg: #ffffff;
+      --github-card-bg: #ffffff;
+      --skill-bg: #ffffff; /* Light theme skills background */
+      --form-bg: #ffffff;
+      --footer-bg: #dddddd;
+      --heading-shadow: 2px 2px 5px rgba(0, 123, 255, 0.5);
+    }
+
+    /* Base Styles */
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      scroll-behavior: smooth;
+    }
+    a {
+      text-decoration: none;
+    }
+
+    /* Navigation */
+    nav {
+      background-color: var(--nav-bg);
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      transition: background 0.3s;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+    nav:hover {
+      background-color: var(--nav-hover);
+    }
+    nav h2 {
+      margin: 0;
+      font-size: 26px;
+      color: var(--accent);
+    }
+    nav a {
+      color: var(--accent);
+      margin: 0 15px;
+      font-size: 18px;
+      font-weight: bold;
+      transition: color 0.3s, transform 0.3s;
+    }
+    nav a:hover {
+      color: var(--hover);
+      transform: scale(1.1);
+    }
+    /* Toggle Theme Button */
+    #theme-toggle {
+      background-color: var(--accent);
+      border: none;
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 20px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.3s;
+    }
+    #theme-toggle:hover {
+      background-color: var(--hover);
+      transform: scale(1.05);
+    }
+    @media (max-width: 600px) {
+      nav {
+        flex-direction: column;
+      }
+      nav div {
+        margin-top: 10px;
+      }
+    }
+
+    /* Marquee */
+    .marquee {
+      width: 100%;
+      overflow: hidden;
+      white-space: nowrap;
+      background: var(--marquee-bg);
+      color: var(--hover);
+      padding: 10px 0;
+      font-size: 18px;
+      font-weight: bold;
+    }
+    .marquee span {
+      display: inline-block;
+      padding-left: 100%;
+      animation: marquee 12s linear infinite;
+    }
+    @keyframes marquee {
+      from { transform: translateX(0%); }
+      to { transform: translateX(-100%); }
+    }
+
+    /* Container Sections */
+    .container {
+      padding: 60px 20px;
+      background: var(--bg-color);
+      text-align: left;
+    }
+    .container h2 {
+      color: var(--accent);
+      font-size: 42px;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+      text-shadow: var(--heading-shadow);
+    }
+    .container p {
+      font-size: 18px;
+      max-width: 800px;
+      line-height: 1.6;
+    }
+
+    /* Hero Section */
+    #hero {
+      background: url('./Resources/robot1.jpg') no-repeat center center/cover;
+      color: #ffffff;
+      position: relative;
+      padding: 120px 20px;
+      text-align: center;
+    }
+    #hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(30, 30, 47, 0.7);
+      z-index: 0;
+    }
+    #hero > * {
+      position: relative;
+      z-index: 1;
+    }
+    #hero h2 {
+      font-size: 56px;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      text-shadow: 3px 3px 7px rgba(0, 0, 0, 0.7);
+    }
+    #hero p {
+      font-size: 22px;
+      font-style: italic;
+      max-width: 900px;
+      margin: 0 auto;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    }
+
+    /* About Section */
+    #about img {
+      width: 150px;
+      border-radius: 50%;
+      display: block;
+      margin: 20px 0;
+      border: 4px solid var(--accent);
+    }
+
+    /* Portfolio Section */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+      padding: 20px 0;
+    }
+    .project-card {
+      background: var(--project-card-bg);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 209, 178, 0.4);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .project-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 12px rgba(0, 209, 178, 0.6);
+    }
+    .project-card img {
+      width: 100%;
+      border-radius: 10px;
+    }
+    .project-card h3 {
+      color: var(--accent);
+      margin-top: 15px;
+      font-size: 24px;
+    }
+    .project-card p {
+      font-size: 16px;
+      line-height: 1.5;
+    }
+
+    /* GitHub Card */
+    .github-card {
+      background: var(--github-card-bg);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 209, 178, 0.4);
+      width: 400px;
+      text-align: center;
+      margin: 30px auto 0;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .github-card:hover {
+      transform: scale(1.08);
+      box-shadow: 0 6px 12px rgba(0, 209, 178, 0.6);
+    }
+    .github-card img {
+      width: 120px;
+      border-radius: 50%;
+    }
+    .github-card a {
+      display: block;
+      margin-top: 10px;
+      color: var(--accent);
+      font-weight: bold;
+      font-size: 20px;
+      transition: color 0.3s;
+    }
+    .github-card a:hover {
+      color: var(--hover);
+    }
+
+    /* Skills Section */
+    #skills .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+      padding: 20px 0;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+      justify-items: center;
+    }
+    .skill {
+      min-width: 180px;
+      min-height: 60px;
+      background: var(--skill-bg);
+      border-radius: 10px;
+      text-align: center;
+      font-size: 18px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.3s, background 0.3s, box-shadow 0.3s;
+      padding: 20px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    }
+    .skill:hover {
+      transform: translateY(-5px);
+      background: var(--nav-hover);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
+    }
+
+    /* Contact Form */
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      width: 400px;
+      background: var(--form-bg);
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(255, 64, 129, 0.3);
+      margin: 0 auto;
+    }
+    .contact-form input, .contact-form textarea {
+      margin: 10px 0;
+      padding: 12px;
+      font-size: 18px;
+      border: none;
+      border-radius: 5px;
+      background: #3a3a4a;
+      color: var(--text-color);
+    }
+    .contact-form button {
+      background: var(--hover);
+      color: var(--bg-color);
+      padding: 12px;
+      border: none;
+      border-radius: 5px;
+      font-size: 20px;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
+    }
+    .contact-form button:hover {
+      background: #e63946;
+      transform: scale(1.05);
+    }
+
+    /* Footer */
+    footer {
+      background: var(--footer-bg);
+      color: var(--text-color);
+      padding: 20px;
+      text-align: center;
+    }
+    footer a {
+      color: var(--accent);
+      transition: color 0.3s;
+    }
+    footer a:hover {
+      color: var(--hover);
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav>
+    <h2>Aishwarya Godse</h2>
+    <div>
+      <a href="#hero">Home</a>
+      <a href="#about">About</a>
+      <a href="#portfolio">Portfolio</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+      <a href="https://github.com/mittechteam" target="_blank">GitHub</a>
+      <button id="theme-toggle">Switch Theme</button>
+    </div> 
+  </nav>
+  
+  <!-- Marquee -->
+  <div class="marquee">
+    <span>ROS | Computer Vision | AI | Automation | Embedded Systems | Navigation | Control Systems | Mechatronics | Path Planning</span>
+  </div>
+  
+  <!-- Hero Section -->
+  <div id="hero" class="container">
+    <h2>Welcome to my Portfolio!</h2>
+    <p>Dive deep into a cybernetic realm where art meets engineering, and every circuit tells a story.</p>
+  </div>
+  
+  <!-- About Section -->
+  <div id="about" class="container">
+    <h2>Who Am I?</h2>
+    <img src="./Resources/pfp.jpg" alt="Aishwarya Godse" />
+    <p>
+      I'm <strong>Aishwarya Godse</strong> – a futuristic engineer, creative technologist, and relentless innovator. Studying at MIT-WPU and playing the role of a ROS Engineer at MIT-Tech Team, I blend digital dreams with mechanical marvels to defy limits.
+    </p>
+  </div>
+  
+  <!-- Portfolio Section -->
+  <div id="portfolio" class="container">
+    <h2>My Creations</h2>
+    <p>
+      Welcome to my playground of innovation! From mind-blowing mechanism sequencing to autonomous navigation systems, each project is a fusion of cutting-edge tech and raw creativity.
+    </p>
+    <div class="projects-grid">
+      <div class="project-card">
+        <img src="./Resources/robotarm.webp" alt="Project 1" />
+        <h3>Mechanism Sequencing</h3>
+        <p>
+          Precision meets poetry – a robotic arm that dances to the tune of advanced ROS algorithms.
+        </p>
+      </div>
+      <div class="project-card">
+        <img src="./Resources/robotpath.png" alt="Project 2" />
+        <h3>Robot Path Planning</h3>
+        <p>
+          Embark on a journey through uncharted digital realms with embedded-powered navigation that redefines exploration.
+        </p>
+      </div>
+    </div>
+    <div class="github-card">
+      <img src="https://avatars.githubusercontent.com/u/77132037?s=200" alt="GitHub Profile" />
+      <p>MIT Tech Team</p>
+      <a href="https://github.com/mittechteam" target="_blank">Check Out My GitHub</a>
+    </div>
+  </div>
+  
+  <!-- Skills Section -->
+  <div id="skills" class="container">
+    <h2>My Tech Arsenal</h2>
+    <div class="skills-grid">
+      <div class="skill">ROS</div>
+      <div class="skill">Computer Vision</div>
+      <div class="skill">AI</div>
+      <div class="skill">Automation</div>
+      <div class="skill">Embedded Systems</div>
+      <div class="skill">Navigation</div>
+      <div class="skill">Control Systems</div>
+      <div class="skill">Mechatronics</div>
+      <div class="skill">Path Planning</div>
+    </div>
+  </div>
+  
+  <!-- Contact Section -->
+  <div id="contact" class="container">
+    <h2>Ping Me</h2>
+    <form class="contact-form">
+      <input type="text" placeholder="Your Name" required />
+      <input type="email" placeholder="Your Email" required />
+      <textarea rows="4" placeholder="Your Message" required></textarea>
+      <button type="submit">Send Your Vibes</button>
+    </form>
+  </div>
+  
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Aishwarya Godse. All rights reserved.</p>
+    <p>Designed with raw passion by Aishwarya Godse. May the circuits be ever in your favor.</p>
+  </footer>
+  
+  <script>
+    // Theme Toggle
+    const themeToggle = document.getElementById('theme-toggle');
+    themeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('light-theme');
+    });
+
+    // Smooth Scrolling on Navbar Clicks
+    document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          targetElement.scrollIntoView({
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
